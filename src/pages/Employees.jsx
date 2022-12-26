@@ -6,12 +6,14 @@ const Employees = () => {
     const listEmployee = useSelector(state => state.listEmployee.listEmployee);
     return (
         <div className="list-employee container">
-            <h2>Current Employees</h2>
+            <div className="title">
+                <h1>Current Employees</h1>
+            </div>
+            <Link to="/" className="link">Home</Link>
             <div className="List">
                 <h2>Employee List</h2>
                 <Table data={listEmployee} />
             </div>
-            <Link to="/">Home</Link>
         </div>
     );
 };

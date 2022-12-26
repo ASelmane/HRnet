@@ -7,9 +7,11 @@ const Home = () => {
             <div className="title">
                 <h1>HRnet</h1>
             </div>
-            <Link to="/employees">View Current Employees</Link>
-            <h2>Create Employee</h2>
-            <Form />
+            <Link to="/employees" className="link">View Current Employees</Link>
+            <div className="content">
+                <h2>Create Employee</h2>
+                <Form />
+            </div>
         </div>
     )
 }

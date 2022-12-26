@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Input = ({ label, name, value, type, onChange }) => {
     return (
-        <div className="input">
+        <div className={`input ${name}`}>
             <label htmlFor={name}>{label}</label>
             {type === "date" ? (
                 <DatePicker 
@@ -13,9 +13,9 @@ const Input = ({ label, name, value, type, onChange }) => {
                 CustomHeader(({date, changeYear, changeMonth, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled}))} 
                 placeholderText="yyyy/mm/dd" dateFormat="yyyy/MM/dd" id={name} name={name} selected={value} onChange={onChange} />
             ) : type === "select" ? (
-                <Dropdown className={name} name={name} options={value} onChange={onChange} />
+                <Dropdown name={name} options={value} onChange={onChange} />
             ) : (
-                <input id={name} name={name} type={type} />
+                <input id={name} name={name} type={type} {...(type === "number" ? {min: 0} : {})} />
             )}
         </div>
     );

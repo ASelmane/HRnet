@@ -23,7 +23,8 @@ const Form = () => {
         setDepartmentOptions(departments.map(department => ({ label: department, value: department })))
     }, [listEmployee]);
 
-    const saveEmployee = () => {
+    const saveEmployee = (e) => {
+        e.preventDefault();
         const form = document.getElementById('create-employee');
         const firstName = document.getElementById('first-name');
         const lastName = document.getElementById('last-name');
@@ -72,22 +73,26 @@ const Form = () => {
     return (
         <div className="form">
             <form id="create-employee">
-                <Input label="First Name" name="first-name" type="text" />
-                <Input label="Last Name" name="last-name" type="text" />
-                <Input label="Date of Birth" name="dob" type="date" value={dob} onChange={(date) => handleDob(date)}/>
-                <Input label="Start Date" name="start-date" type="date" value={startDate} onChange={(date) => handleStartDate(date)} />
+                <div className='personal'>
+                    <Input label="First Name" name="first-name" type="text" />
+                    <Input label="Last Name" name="last-name" type="text" />
+                    <Input label="Date of Birth" name="dob" type="date" value={dob} onChange={(date) => handleDob(date)}/>
+                </div>
                 <div className="adress">
                     <fieldset>
                         <legend>Address</legend>
                         <Input label="Street" name="street" type="text" />
+                        <Input label="Zip Code" name="zip-code" type="number" />
                         <Input label="City" name="city" type="text" />
                         <Input label="State" name="state" type="select" value={stateOptions} onChange={(value) => setState(value)}/>
-                        <Input label="Zip Code" name="zip-code" type="number" />
                     </fieldset>
                 </div>
+                <div className="work">
                 <Input label="Department" name="department" type="select" value={departmentOptions} onChange={(value) => setDepartment(value)}/>
+                <Input label="Start Date" name="start-date" type="date" value={startDate} onChange={(date) => handleStartDate(date)} />
+                </div>
+                <button className='save' onClick={(e) => saveEmployee(e)}>Save</button>
             </form>
-            <button className='save' onClick={() => saveEmployee()}>Save</button>
             <Modal id="confirmation" className="modal" isOpen={modalIsOpen} overlayClassName="overlay">
                 <div className="modal-content">
                     Employee Created!
